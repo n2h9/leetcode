@@ -1,10 +1,6 @@
 package solution
 
-func solveNQueens(n int) [][]string {
-	if n <= 0 {
-		return [][]string{[]string{}}
-	}
-
+func totalNQueens(n int) int {
 	// hust because by default byte array is filled by zero values use it as empty char
 	const CHAR_EMPTY byte = 0
 	// and replace to this char before return result
@@ -70,22 +66,14 @@ func solveNQueens(n int) [][]string {
 		return newBoard
 	}
 
-	bytesToStringSlice := func(b [][]byte) []string {
-		slice := make([]string, n)
-		for i := 0; i < n; i++ {
-			slice[i] = string(b[i])
-		}
-		return slice
-	}
-
-	result := [][]string{}
+	result := 0
 
 	var processLine func(y int, board [][]byte)
 	processLine = func(y int, board [][]byte) {
 		if y >= n {
 			// means we achieve one of the solutions solution
 			boardCleanCells(board)
-			result = append(result, bytesToStringSlice(board))
+			result++
 			return
 		}
 
