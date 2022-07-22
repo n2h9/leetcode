@@ -72,28 +72,24 @@ func countHighestScoreNodes(parents []int) int {
 // ----
 // queue
 
-type queue struct {
-	storage []int
-}
+type queue []int
 
-func newQueue() *queue {
-	return &queue{
-		storage: make([]int, 0, 32),
-	}
+func newQueue() queue {
+	return make([]int, 0, 32)
 }
 
 func (q *queue) isEmpty() bool {
-	return len(q.storage) <= 0
+	return len(*q) <= 0
 }
 
 func (q *queue) push(node int) {
-	q.storage = append(q.storage, node)
+	(*q) = append(*q, node)
 }
 
 // panic on empty queue
 func (q *queue) pop() int {
-	v := q.storage[0]
-	q.storage = q.storage[1:]
+	v := (*q)[0]
+	(*q) = (*q)[1:]
 	return v
 }
 
@@ -102,28 +98,24 @@ func (q *queue) pop() int {
 
 // ----
 // stack
-type stack struct {
-	storage []int
-}
+type stack []int
 
-func newStack() *stack {
-	return &stack{
-		storage: make([]int, 0, 32),
-	}
+func newStack() stack {
+	return make([]int, 0, 32)
 }
 
 func (s *stack) isEmpty() bool {
-	return len(s.storage) <= 0
+	return len((*s)) <= 0
 }
 
 func (s *stack) push(node int) {
-	s.storage = append(s.storage, node)
+	(*s) = append((*s), node)
 }
 
 // panic on empty stack
 func (s *stack) pop() int {
-	v := s.storage[len(s.storage)-1]
-	s.storage = s.storage[:len(s.storage)-1]
+	v := (*s)[len((*s))-1]
+	(*s) = (*s)[:len((*s))-1]
 	return v
 }
 
