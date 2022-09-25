@@ -2,13 +2,6 @@
 #include <assert.h>
 #include "./queue.c"
 
-// ---
-// - define a struct container for a value
-// - path the pointer to a container struct to new_q_node as a (void *)
-//
-// 
-// Usage example:
-//
 struct _value_c {
     int i, j, t;
 };
@@ -22,7 +15,6 @@ value_c * new_value_c(int i, int j, int t) {
 
     return v;
 }
-// 
 
 void testCase0() {
     int i = 2, j = 4, t = 8;
