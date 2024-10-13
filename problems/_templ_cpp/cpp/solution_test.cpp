@@ -2,11 +2,26 @@
 
 #include <gtest/gtest.h>
 
-TEST(SolutionTest, BasicAssertions) {
-  // Expect two strings not to be equal.
-  EXPECT_STRNE("hello", "world");
+#include <vector>
 
+struct data_entity {
+  int expected;
+
+  int a;
+  int b;
+};
+
+data_entity data_array[] = {
+    {42, 40, 2},
+    {42, 38, 4},
+    {42, 36, 6},
+};
+
+TEST(SolutionTest, BasicAssertions) {
   auto solution = Solution{};
 
-  EXPECT_EQ(42, solution.solve(40, 2));
+  for (auto data : data_array) {
+    auto result = solution.solve(data.a, data.b);
+    EXPECT_EQ(data.expected, result);
+  }
 }
