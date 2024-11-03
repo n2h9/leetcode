@@ -1,22 +1,36 @@
+#include <assert.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 
-extern int someFunc(int* array, int size);
+extern int someFunc(int* array, int size, char* s, bool b);
 
-void testCase0() {
-    int size = 5;
-    int array[] = {3,3,4,2,3};
-    int expected = 0;
+struct data_entity {
+  int expected;
 
-    int res = someFunc(array, size);
+  int* array;
+  int size;
+  char* s;
+  bool b;
+};
 
-    assert(expected == res);
-}
+struct data_entity data_array[] = {
+    {0, (int[]){1, 2, 3, 4}, 4, "yellow", true},
+    {0, (int[]){5, 6, 7}, 3, "bus", false},
+};
 
 int main() {
-    testCase0();
+  size_t length = sizeof(data_array) / sizeof(data_array[0]);
 
-    printf("ok\n");
-    return 0;
+  for (size_t i = 0; i < length; i++) {
+    int res = someFunc(data_array[i].array, data_array[i].size, data_array[i].s,
+                       data_array[i].b);
+    printf("test case #%zu . . .\n", i);
+    assert(data_array[i].expected == res);
+    printf("test case #%zu is ok\n", i);
+  }
+
+  printf("all passed\n");
+
+  return 0;
 }
