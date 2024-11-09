@@ -1,7 +1,5 @@
 https://leetcode.com/problems/count-pairs-of-connectable-servers-in-a-weighted-tree-network/
 
-[Time Limit Exceeded] 715 / 716 testcases passed
-
 3067. Count Pairs of Connectable Servers in a Weighted Tree Network
 
 Medium.
